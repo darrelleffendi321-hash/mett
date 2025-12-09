@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oi Mett</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .password-screen {
+            text-align: center;
+        }
+
+        .password-screen h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .password-screen p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .letter-content {
+            display: none;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .letter-header h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .letter-date {
+            color: #666;
+            font-style: italic;
+        }
+
+        .letter-body {
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+        }
+
+        .letter-signature {
+            margin-top: 40px;
+            text-align: right;
+        }
+
+        .letter-signature p {
+            margin: 5px 0;
+        }
+
+        .lock-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Password Screen -->
+        <div id="passwordScreen" class="password-screen">
+            <div class="lock-icon">🔒</div>
+            <h2>Surat Terproteksi</h2>
+            <p>Masukkan password untuk membuka surat ini😜</p>
+            <input 
+                type="password" 
+                id="passwordInput" 
+                class="password-input" 
+                placeholder="Masukkan password"
+                onkeypress="if(event.key === 'Enter') checkPassword()"
+            >
+            <button class="submit-btn" onclick="checkPassword()">Buka Surat</button>
+            <p id="errorMessage" class="error-message">Password salah! Silakan coba lagi.</p>
+        </div>
+
+        <!-- Letter Content -->
+        <div id="letterContent" class="letter-content">
+            <div class="letter-header">
+                <h1>kasi judul sndiri</h1>
+                <p class="letter-date">9 Desember 2025</p>
+            </div>
+
+            <div class="letter-body">
+                <p>buat metta,</p>
+
+                <p>Hii mett kongrets yaaa uda scan trs masuk ke file ini wkwkw maap klo ribet. Selamat juga uda nyelesain asasnya semoga dpt nilai yg bagus yaa, pasti bagus si kan km rajin bgt wkwkw</p>
+
+                <p>Jujur ga tau mau ngetik apalg disini, awalnya ak niat tulis tangan surat kcil, tapi td tbtb tadi pas merem kepikiran make web biar kalo ada org lain yg ambil hrs masukin pw dulu .</p>
+
+                <p>Yaauda sampe sini ajalaayaa. Jujur kurang bs ngerangkai kata jadi wajar lah yh rada alay. dimakan tu coklatnyaa, happy holidayy buat mingdep!!.</p>
+
+                <div class="letter-signature">
+                    <p><strong></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GANTI PASSWORD DI SINI
+        const correctPassword = "angang1";
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMessage');
+            const passwordScreen = document.getElementById('passwordScreen');
+            const letterContent = document.getElementById('letterContent');
+
+            if (input.value === correctPassword) {
+                passwordScreen.style.display = 'none';
+                letterContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        // Focus ke input saat halaman dimuat
+        window.onload = function() {
+            document.getElementById('passwordInput').focus();
+        };
+    </script>
+</body>
+</html>
